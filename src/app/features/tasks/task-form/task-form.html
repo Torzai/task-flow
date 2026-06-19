@@ -1,0 +1,68 @@
+<section class="form-wrap">
+  <header class="form-head">
+    <h1 class="form-title">{{ isEdit() ? 'Editar tarea' : 'Nueva tarea' }}</h1>
+    <p class="form-hint">Los campos con * son obligatorios.</p>
+  </header>
+
+  <form class="form" (submit)="$event.preventDefault(); onSubmit()">
+    <!-- Título -->
+    <div class="field">
+      <label for="title">Título *</label>
+      <input
+        id="title"
+        type="text"
+        [formField]="f.title"
+        autocomplete="off"
+        [class.invalid]="f.title().touched() && f.title().invalid()"
+      />
+      @if (f.title().touched() && f.title().invalid()) {
+        <p class="field__error">{{ f.title().errors()[0]?.message }}</p>
+      }
+    </div>
+
+    <!-- Descripción -->
+    <div class="field">
+      <label for="description">Descripción</label>
+      <textarea
+        id="description"
+        rows="3"
+        [formField]="f.description"
+        [class.invalid]="f.description().touched() && f.description().invalid()"
+      ></textarea>
+      @if (f.description().touched() && f.description().invalid()) {
+        <p class="field__error">{{ f.description().errors()[0]?.message }}</p>
+      }
+    </div>
+
+    <div class="field-row">
+      <!-- Estado -->
+      <div class="field">
+        <label for="status">Estado</label>
+        <select id="status" [formField]="f.status">
+          @for (status of statuses; track status) {
+            <option [value]="status">{{ statusLabel[status] }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Prioridad -->
+      <div class="field">
+        <label for="priority">Prioridad</label>
+        <select id="priority" [formField]="f.priority">
+          @for (priority of priorities; track priority) {
+            <option [value]="priority">{{ priorityLabel[priority] }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <footer class="form-actions">
+      <button type="button" class="btn btn--ghost" (click)="onCancel()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn--primary" [disabled]="f().invalid()">
+        {{ isEdit() ? 'Guardar cambios' : 'Crear tarea' }}
+      </button>
+    </footer>
+  </form>
+</section>

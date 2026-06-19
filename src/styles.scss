@@ -1,0 +1,107 @@
+
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --ink: #1b1f24;
+  --ink-soft: #5b6470;
+  --line: #e6e8eb;
+  --line-strong: #d3d7dd;
+
+  --accent: #0d9488;
+  --accent-ink: #ffffff;
+  --accent-ring: rgba(13, 148, 136, 0.25);
+  --danger: #dc2626;
+  --prio-high: #e11d48;
+  --prio-medium: #d97706;
+  --prio-low: #64748b;
+
+  --status-todo-bg: #eef1f4;
+  --status-todo-fg: #475569;
+  --status-progress-bg: #e0f2fe;
+  --status-progress-fg: #075985;
+  --status-done-bg: #dcfce7;
+  --status-done-fg: #166534;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 4px 14px rgba(16, 24, 40, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.12s ease, border-color 0.12s ease, opacity 0.12s ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn--primary:hover:not(:disabled) {
+  background: #0b8175;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+.btn--ghost:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn--danger {
+  background: transparent;
+  border-color: transparent;
+  color: var(--danger);
+}
+.btn--danger:hover:not(:disabled) {
+  background: rgba(220, 38, 38, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

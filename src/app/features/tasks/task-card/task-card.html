@@ -1,0 +1,28 @@
+<article class="card" [attr.data-priority]="task().priority">
+  <header class="card__head">
+    <span class="badge badge--status" [attr.data-status]="task().status">
+      {{ statusLabel() }}
+    </span>
+    <span class="badge badge--priority" [attr.data-priority]="task().priority">
+      {{ priorityLabel() }}
+    </span>
+  </header>
+
+  <h3 class="card__title">{{ task().title }}</h3>
+
+  @if (task().description) {
+    <p class="card__desc">{{ task().description }}</p>
+  }
+
+  <footer class="card__actions">
+    <button type="button" class="btn btn--ghost" (click)="advance.emit()">
+      Avanzar
+    </button>
+    <button type="button" class="btn btn--ghost" (click)="edit.emit()">
+      Editar
+    </button>
+    <button type="button" class="btn btn--danger" (click)="remove.emit()">
+      Borrar
+    </button>
+  </footer>
+</article>

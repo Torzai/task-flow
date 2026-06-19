@@ -1,0 +1,56 @@
+<section class="list">
+  <header class="list__header">
+    <div>
+      <h1 class="list__title">Mis tareas</h1>
+      <p class="list__subtitle">
+        {{ stats().total }} en total · {{ completion() }}% completado
+      </p>
+    </div>
+    <a routerLink="/tasks/new" class="btn btn--primary">+ Nueva tarea</a>
+  </header>
+
+  <div class="progress" role="progressbar" [attr.aria-valuenow]="completion()">
+    <div class="progress__bar" [style.width.%]="completion()"></div>
+  </div>
+
+  <div class="toolbar">
+    <input
+      type="search"
+      class="toolbar__search"
+      placeholder="Buscar por título o descripción…"
+      [value]="search()"
+      (input)="search.set($any($event.target).value)"
+    />
+
+    <div class="toolbar__filters" role="group" aria-label="Filtrar por estado">
+      @for (option of filterOptions; track option) {
+        <button
+          type="button"
+          class="chip"
+          [class.chip--active]="statusFilter() === option"
+          (click)="statusFilter.set(option)"
+        >
+          {{ labelFor(option) }}
+        </button>
+      }
+    </div>
+  </div>
+
+  @for (task of filtered(); track task.id) {
+    <app-task-card
+      [task]="task"
+      (advance)="onAdvance(task.id)"
+      (edit)="onEdit(task.id)"
+      (remove)="onRemove(task.id)"
+    />
+  } @empty {
+    <div class="empty">
+      @if (stats().total === 0) {
+        <p>Aún no tienes tareas. Crea la primera para empezar.</p>
+        <a routerLink="/tasks/new" class="btn btn--primary">+ Nueva tarea</a>
+      } @else {
+        <p>Ninguna tarea coincide con el filtro.</p>
+      }
+    </div>
+  }
+</section>
