@@ -17,7 +17,7 @@ type StatusFilter = TaskStatus | 'all';
   styleUrl: './task-list.scss',
 })
 export class TaskList {
-  private readonly store = inject(TaskStore);
+  protected readonly store = inject(TaskStore);
   private readonly router = inject(Router);
 
   protected readonly stats = this.store.stats;
