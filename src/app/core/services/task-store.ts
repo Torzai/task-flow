@@ -1,12 +1,17 @@
-import { computed, effect, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { STATUS_ORDER, Task, TaskDraft, TaskStatus } from '../models/task';
+import { TaskApiService } from './task-api';
 
 const STORAGE_KEY = 'taskflow.tasks.v1';
 
 @Injectable({ providedIn: 'root' })
 export class TaskStore {
 
-  private readonly _tasks = signal<Task[]>(loadFromStorage());
+  private readonly taskApiService = inject(TaskApiService);
+  readonly loading = signal(false);
+
+  //private readonly _tasks = signal<Task[]>(loadFromStorage());
+  private readonly _tasks = signal<Task[]>([]);
   readonly tasks = this._tasks.asReadonly();
   //agregar otro computed y que filtre por la prioridad alta
   readonly prioridadAlta = computed(() => {
@@ -30,13 +35,23 @@ export class TaskStore {
   });
 
   constructor() {
-    effect(() => {
-      const list = this._tasks();
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-      } catch {
+    this.loadTask()
+  }
+  loadTask(): void {
+    this.loading.set(true)
+    this.taskApiService.getTask().subscribe({
+      next: (tasks) => {
+        this.loading.set(false);
+        this._tasks.set(tasks);
+      },
+      error: (error) => {
+        this.loading.set(false);
+        console.log(error);
+      },
+      complete: () => {
+        console.log('Trabajo de carga finalizado');
       }
-    });
+    })
   }
 
   byId(id: string): Task | undefined {

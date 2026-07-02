@@ -23,7 +23,7 @@ type StatusPriority = TaskPriority | 'all';
 })
 export class TaskList {
 
-  private readonly store = inject(TaskStore);
+  protected readonly store = inject(TaskStore);
   private readonly router = inject(Router);
 
   protected readonly prioridadAlta = this.store.prioridadAlta;
