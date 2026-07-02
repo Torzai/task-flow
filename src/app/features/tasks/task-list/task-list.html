@@ -2,6 +2,9 @@
   <header class="list__header">
     <div>
       <h1 class="list__title">Mis tareas</h1>
+       <p class="list__subtitle">
+        {{ prioridadAlta() }} urgentes
+      </p>
       <p class="list__subtitle">
         {{ stats().total }} en total · {{ completion() }}% completado
       </p>
@@ -35,7 +38,32 @@
       }
     </div>
   </div>
-
+  
+  <div class="toolbar__filters" role="group" aria-label="Filtrar por prioridad">
+      @for (option of filterPriority; track option) {
+        <button
+          type="button"
+          class="chip"
+          [class.chip--active]="priorityFilter() === option"
+          (click)="priorityFilter.set(option)"
+        >
+          {{ labelFor(option) }}
+        </button>
+      }
+    </div>
+    
+  <label for="order">Ordenar por:</label>
+<!--
+<select
+  id="order"
+  [value]="orderList()"
+  (change)="orderList.set($any($event.target).value)"
+>
+  <option value="fecha">Fecha</option>
+  <option value="prioridad">Prioridad</option>
+  <option value="titulo">Título</option>
+</select>
+-->
   @for (task of filtered(); track task.id) {
     <app-task-card
       [task]="task"

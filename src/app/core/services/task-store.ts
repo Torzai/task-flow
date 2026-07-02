@@ -8,6 +8,12 @@ export class TaskStore {
 
   private readonly _tasks = signal<Task[]>(loadFromStorage());
   readonly tasks = this._tasks.asReadonly();
+  //agregar otro computed y que filtre por la prioridad alta
+  readonly prioridadAlta = computed(() => {
+   return this._tasks().filter((t) => t.priority === 'high').length
+  });
+
+  
   readonly stats = computed(() => {
     const list = this._tasks();
     return {
@@ -114,3 +120,4 @@ function seed(): Task[] {
     },
   ];
 }
+//// tarea pendiente,La lista filtra por estado y por texto. Añade un tercer filtro por prioridad, copiando el patrón del de estado
