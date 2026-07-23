@@ -66,8 +66,13 @@ export class TaskStore {
       id: crypto.randomUUID(),
       createdAt: new Date().toISOString(),
     };
-    this.taskApiService.createTask(task).subscribe({
-      next: () => this._tasks.update((list) => [task, ...list])
+    //this._tasks.update((list) => [task, ...list]);
+    this.taskApiService.postTaskCreate(task).subscribe({
+      next: () =>{
+        this._tasks.update((list) => [task, ...list]);
+      },
+      error: (error) => console.log(error)
+      
     })
     return task;
   }
@@ -94,11 +99,14 @@ export class TaskStore {
   }
 
   remove(id: string): void {
-    this._tasks.update((list) => list.filter((t) => t.id !== id));
-  }
+   // this._tasks.update((list) => list.filter((t) => t.id !== id));
+   this.taskApiService.deleteTask(id).subscribe({
+    next: () => this._tasks.update((list) => list.filter((t) => t.id !== id)),
+    error: (id) => console.log('No se pudo eliminar la tarea con id: ' + id),
+   })
 }
 
-function loadFromStorage(): Task[] {
+  loadFromStorage(): Task[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
@@ -107,10 +115,10 @@ function loadFromStorage(): Task[] {
   } catch {
 
   }
-  return seed();
+  return this.seed();
 }
 
-function seed(): Task[] {
+ seed(): Task[] {
   const now = Date.now();
   return [
     {
@@ -140,3 +148,4 @@ function seed(): Task[] {
   ];
 }
 //// tarea pendiente,La lista filtra por estado y por texto. Añade un tercer filtro por prioridad, copiando el patrón del de estado
+}

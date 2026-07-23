@@ -15,6 +15,14 @@ export class TaskApiService {
     createTask(task: Task) {
         return this.http.post<Task>(this.url, task);
     }
+    
+    postTaskCreate(task: Task){
+        return this.http.post<Task>(this.url, task)
+    }
+
+    deleteTask(id: string){
+        return this.http.delete(`${this.url}/${id}`);
+    }
 
 }
 
