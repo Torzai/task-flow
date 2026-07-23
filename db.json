@@ -1,60 +1,77 @@
 {
-    "tasks": [
-        {
-            "id": "t1",
-            "title": "Configurar el proyecto",
-            "description": "Clonar el repo y arrancar con ng serve.",
-            "status": "done",
-            "priority": "medium",
-            "createdAt": "2026-06-14T09:00:00.000Z"
-        },
-        {
-            "id": "t2",
-            "title": "Leer el README",
-            "description": "Entender la arquitectura por features y el roadmap.",
-            "status": "in-progress",
-            "priority": "high",
-            "createdAt": "2026-06-15T11:30:00.000Z"
-        },
-        {
-            "id": "t3",
-            "title": "Crear mi primera tarea",
-            "description": "Probar el formulario con Signal Forms.",
-            "status": "todo",
-            "priority": "low",
-            "createdAt": "2026-06-16T08:15:00.000Z"
-        },
-        {
-            "id": "t4",
-            "title": "Implementar el filtro por prioridad",
-            "description": "Anadir un tercer filtro copiando el patron del de estado.",
-            "status": "todo",
-            "priority": "high",
-            "createdAt": "2026-06-16T10:00:00.000Z"
-        },
-        {
-            "id": "t5",
-            "title": "Repasar signals vs observables",
-            "description": "Tener claro cuando se usa cada uno.",
-            "status": "done",
-            "priority": "low",
-            "createdAt": "2026-06-13T17:45:00.000Z"
-        },
-        {
-            "id": "t6",
-            "title": "Conectar la app al backend",
-            "description": "Cargar las tareas desde la API con HttpClient.",
-            "status": "in-progress",
-            "priority": "medium",
-            "createdAt": "2026-06-17T09:20:00.000Z"
-        },
-        {
-            "id": "t7",
-            "title": "Preparar la demo de HttpClient",
-            "description": "Montar el ejemplo del GET para la sesion.",
-            "status": "todo",
-            "priority": "medium",
-            "createdAt": "2026-06-17T12:00:00.000Z"
-        }
-    ]
+  "tasks": [
+    {
+      "id": "t1",
+      "title": "Configurar el proyecto",
+      "description": "Clonar el repo y arrancar con ng serve.",
+      "status": "done",
+      "priority": "medium",
+      "createdAt": "2026-06-14T09:00:00.000Z"
+    },
+    {
+      "id": "t2",
+      "title": "Leer el README",
+      "description": "Entender la arquitectura por features y el roadmap.",
+      "status": "in-progress",
+      "priority": "high",
+      "createdAt": "2026-06-15T11:30:00.000Z"
+    },
+    {
+      "id": "t3",
+      "title": "Crear mi primera tarea",
+      "description": "Probar el formulario con Signal Forms.",
+      "status": "todo",
+      "priority": "low",
+      "createdAt": "2026-06-16T08:15:00.000Z"
+    },
+    {
+      "id": "t4",
+      "title": "Implementar el filtro por prioridad",
+      "description": "Anadir un tercer filtro copiando el patron del de estado.",
+      "status": "todo",
+      "priority": "high",
+      "createdAt": "2026-06-16T10:00:00.000Z"
+    },
+    {
+      "id": "t5",
+      "title": "Repasar signals vs observables",
+      "description": "Tener claro cuando se usa cada uno.",
+      "status": "done",
+      "priority": "low",
+      "createdAt": "2026-06-13T17:45:00.000Z"
+    },
+    {
+      "id": "t6",
+      "title": "Conectar la app al backend",
+      "description": "Cargar las tareas desde la API con HttpClient.",
+      "status": "in-progress",
+      "priority": "medium",
+      "createdAt": "2026-06-17T09:20:00.000Z"
+    },
+    {
+      "id": "t7",
+      "title": "Preparar la demo de HttpClient",
+      "description": "Montar el ejemplo del GET para la sesion.",
+      "status": "todo",
+      "priority": "medium",
+      "createdAt": "2026-06-17T12:00:00.000Z"
+    },
+    {
+      "title": "Ejercicio de Task Add",
+      "description": "CRUD en el TASKS",
+      "status": "todo",
+      "priority": "medium",
+      "id": "EvVmsPJFJgw",
+      "createdAt": "2026-07-09T14:15:40.294Z"
+    },
+    {
+      "title": "REmove en el task",
+      "description": "CRUD EN EL TASK DE TAREAS",
+      "status": "in-progress",
+      "priority": "high",
+      "id": "3jPzOzubs1o",
+      "createdAt": "2026-07-09T14:16:13.174Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

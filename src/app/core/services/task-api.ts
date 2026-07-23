@@ -12,5 +12,9 @@ export class TaskApiService {
         return this.http.get<Task[]>(this.url);
     }
 
+    createTask(task: Task) {
+        return this.http.post<Task>(this.url, task);
+    }
+
 }
 
