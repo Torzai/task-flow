@@ -1,6 +1,7 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { STATUS_ORDER, Task, TaskDraft, TaskStatus } from '../models/task';
 import { TaskApiService } from './task-api';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 const STORAGE_KEY = 'taskflow.tasks.v1';
 
@@ -9,6 +10,7 @@ export class TaskStore {
 
   private readonly taskApiService = inject(TaskApiService);
   readonly loading = signal(false);
+  readonly error = signal('');
 
   //private readonly _tasks = signal<Task[]>(loadFromStorage());
   private readonly _tasks = signal<Task[]>([]);
@@ -64,7 +66,9 @@ export class TaskStore {
       id: crypto.randomUUID(),
       createdAt: new Date().toISOString(),
     };
-    this._tasks.update((list) => [task, ...list]);
+    this.taskApiService.createTask(task).subscribe({
+      next: () => this._tasks.update((list) => [task, ...list])
+    })
     return task;
   }
 
