@@ -55,8 +55,6 @@
       "status": "todo",
       "priority": "medium",
       "createdAt": "2026-06-17T12:00:00.000Z"
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     },
     {
       "title": "Ejercicio de Task Add",
@@ -73,10 +71,6 @@
       "priority": "high",
       "id": "3jPzOzubs1o",
       "createdAt": "2026-07-09T14:16:13.174Z"
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -56,6 +56,9 @@
 </select>
 -->
   @for (task of filtered(); track task.id) {
+    <a [routerLink]="['/tasks',task.id]">
+      ver detalle
+    </a>
     <app-task-card
       [task]="task"
       (advance)="onAdvance(task.id)"

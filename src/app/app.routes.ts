@@ -17,6 +17,13 @@ export const routes: Routes = [
       import('./features/tasks/task-form/task-form').then((m) => m.TaskForm),
   },
   {
+    path: 'tasks/:id',
+    title: 'Detalle tarea · TaskFlow',
+    canDeactivate: [unsavedChangesGuard],
+    loadComponent: () =>
+      import('./features/tasks/task-detail/task-detail').then((m) => m.TaskDetail),
+  },
+  {
     path: 'tasks/:id/edit',
     title: 'Editar tarea · TaskFlow',
     canDeactivate: [unsavedChangesGuard],

@@ -1,0 +1,13 @@
+<article class="card">
+ 
+  <h3 class="card__title">{{ task().title }}</h3>
+  @if(task();as t){
+    <h2>{{ t.title }}</h2>
+    <p>{{t.description}}</p>
+    <p>{{t.status}}</p>
+    <p>{{t.priority}}</p>
+  }@else{
+    <p>Tarea no encontrada</p>
+  }
+
+</article>
